@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://bailaotou.github.io</id>
     <title>白老头</title>
-    <updated>2020-03-27T11:32:33.844Z</updated>
+    <updated>2020-03-27T11:35:23.136Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://bailaotou.github.io"/>
     <link rel="self" href="https://bailaotou.github.io/atom.xml"/>
@@ -21,75 +21,6 @@
 ]]></summary>
         <content type="html"><![CDATA[<h1 id="使用阿里云服务器搭建私有网盘nextcloud">使用阿里云服务器搭建私有网盘NextCloud</h1>
 <h2 id="目录">目录：</h2>
-<!-- more -->
-<ol>
-<li>开通云服务器</li>
-<li>搭建网盘运行环境</li>
-<li>安装NextCloud网盘程序</li>
-</ol>
-<!-- more -->
-<hr>
-<h3 id="1开通云服务器">1.开通云服务器</h3>
-<p>最近阿里云在搞活动所以我就免费领了一台云服务器，前提必须要是学生认证</p>
-<p>活动地址：https://developer.aliyun.com/adc/student/</p>
-<hr>
-<h3 id="2搭建网盘运行环境">2.搭建网盘运行环境</h3>
-<p>目前主流的建站环境就是 LAMP 环境，它是 Linux + Apache Httpd + MySQL + PHP 的缩写，是网页环境的黄金搭档，可以兼容几乎所有的HTML和PHP运行需求。</p>
-<p>这里推荐使用 LAMP环境（Ubuntu18.04 Apache PHP7.1）</p>
-<h4 id="一-购买ecs时选择">一、购买ECS时选择</h4>
-<p><img src="https://bailaotou.github.io/post-images/1585308111667.png" alt="" loading="lazy"><br>
-<img src="https://bailaotou.github.io/post-images/1585308117674.png" alt="" loading="lazy"></p>
-<p><strong>搜索关键词</strong>：LAMP环境（Ubuntu18.04 Apache PHP7.1）</p>
-<h4 id="二-已购ecs更换镜像">二、已购ECS更换镜像</h4>
-<p>1.停止ECS（强制停止更快）<br>
-<img src="https://bailaotou.github.io/post-images/1585308133423.png" alt="" loading="lazy"></p>
-<p><img src="https://bailaotou.github.io/post-images/1585308139472.png" alt="" loading="lazy"><br>
-这样就可以直接跟原来一样更换环境了！</p>
-<h4 id="三-安全组设置">三、安全组设置</h4>
-<p>1、进入【本实例安全组】<br>
-<img src="https://bailaotou.github.io/post-images/1585308149868.png" alt="" loading="lazy"></p>
-<p>2.点击配置规则<br>
-<img src="https://bailaotou.github.io/post-images/1585308161844.png" alt="" loading="lazy"></p>
-<p>3、点击右上角【添加安全组规则】</p>
-<figure data-type="image" tabindex="1"><img src="https://bailaotou.github.io/post-images/1585308174742.png" alt="" loading="lazy"></figure>
-<p>4、设置内容：</p>
-<figure data-type="image" tabindex="2"><img src="https://bailaotou.github.io/post-images/1585308188544.png" alt="" loading="lazy"></figure>
-<h4 id="四-查看">四、查看</h4>
-<p>访问：http://公网IP/</p>
-<h2 id="可以查看到">可以查看到<br>
-<img src="https://bailaotou.github.io/post-images/1585308216873.png" alt="" loading="lazy"></h2>
-<h3 id="3-安装nextcloud网盘程序">3、安装NextCloud网盘程序</h3>
-<h4 id="一-下载nextcloud">一、下载NextCloud</h4>
-<p>可以去官网下载：<a href="https://download.nextcloud.com/server/releases/latest.zip?spm=5176.10731542.0.0.14c05a9f1c9Evi&amp;file=latest.zip">https://download.nextcloud.com/server/releases/latest.zip</a></p>
-<p>我自己也打包了一份：链接：https://pan.baidu.com/s/1kxNmjYLdU-sb6heovcwbig 提取码：224z</p>
-<h4 id="二-使用fileziila上传文件">二、使用FileZiila上传文件</h4>
-<p>进入/data/wwwroot/default/ 目录创建一个old文件夹，将目录上的原始文件全部搬到old内。</p>
-<figure data-type="image" tabindex="3"><img src="https://bailaotou.github.io/post-images/1585308253489.png" alt="" loading="lazy"></figure>
-<p><strong>将 Nextcloud压缩包 上传至 /data/wwwroot/default/ 目录</strong></p>
-<p>FileZiila下载地址：链接：https://pan.baidu.com/s/1PLsfH-7skr0Dqh_U4vjERQ 提取码：kphk</p>
-<h4 id="三-ssh-运行">三、SSH 运行</h4>
-<p>使用PUTTY 连接服务器</p>
-<figure data-type="image" tabindex="4"><img src="https://bailaotou.github.io/post-images/1585308263479.png" alt="" loading="lazy"></figure>
-<p>PUTTY下载地址：<a href="https://github.com/larryli/PuTTY/releases?spm=5176.10731542.0.0.14c05a9f1c9Evi">https://github.com/larryli/PuTTY/releases</a></p>
-<p>连接完成之后运行以下命令：</p>
-<pre><code class="language-Linux">unzip nextcloud.zip
-sed -i 's/;mbstring.func_overload = 0/mbstring.func_overload = 0/g' /usr/local/php/etc/php.ini
-rm -rf /usr/local/php72/etc/php.d/ext-opcache.ini
-chown -R www /data/wwwroot/default/
-service httpd restart
-</code></pre>
-<h4 id="四-浏览器中输入-http你的ecsip输入管理员的账号密码马上开始安装">四、浏览器中输入 http://你的ecsip，输入管理员的账号密码，马上开始安装</h4>
-<h4 id="五-然后登录即可">五、然后登录即可</h4>
-<figure data-type="image" tabindex="5"><img src="https://bailaotou.github.io/post-images/1585308286178.png" alt="" loading="lazy"></figure>
-<p>至此，安装完成！</p>
-<hr>
-<p>安装过程中遇到的问题：</p>
-<h4 id="提示php版本不适用请更换php版本">提示PHP版本不适用请更换PHP版本</h4>
-<p>​	 在SSH 中运行以下命令：</p>
-<pre><code>cd /root/oneinstack
-./change_php_version.sh
-</code></pre>
-<figure data-type="image" tabindex="6"><img src="https://bailaotou.github.io/post-images/1585308293261.png" alt="" loading="lazy"></figure>
 ]]></content>
     </entry>
 </feed>
